@@ -1,0 +1,1 @@
+export default function Footer() { return <footer className="mt-16 border-t border-[var(--line)] bg-white"><div className="mx-auto max-w-6xl px-5 py-7 text-sm text-[var(--muted)]">Maple Ridge Ward · Meeting programs for our community</div></footer>; }
