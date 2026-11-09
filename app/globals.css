@@ -1,26 +1,41 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root { --ink: #1e2d2b; --muted: #61716d; --paper: #faf9f5; --green: #31564c; --sage: #e7eee9; --line: #dce2dc; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-lora), Georgia, serif; }
+::selection { background: #c8d9ce; }
+.print-only { display: none; }
+.home-page { width: min(100% - 2rem, 70rem); margin: 0 auto; padding: clamp(3rem, 8vh, 5.5rem) 0 4rem; display: flex; flex-direction: column; align-items: center; gap: 2.75rem; text-align: center; }
+.home-copy { width: 100%; display: flex; flex-direction: column; align-items: center; }
+.home-kicker { margin: 0; color: var(--green); font-size: .78rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+.home-title { max-width: 42rem; margin: 1rem 0 0; font-size: clamp(2.7rem, 6vw, 4.5rem); font-weight: 600; line-height: 1.08; letter-spacing: -.04em; }
+.home-description { max-width: 34rem; margin: 1.25rem 0 0; color: var(--muted); font-size: 1.125rem; line-height: 1.75; }
+.home-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 1.75rem; }
+.home-button { min-height: 3rem; display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: .75rem 1.5rem; border: 1px solid var(--line); border-radius: 999px; font-size: .95rem; font-weight: 600; text-decoration: none; transition: background .18s ease, transform .18s ease; }
+.home-button:hover { transform: translateY(-1px); }
+.home-button-primary { border-color: var(--green); background: var(--green); color: white; }
+.home-button-primary:hover { background: #25453c; }
+.home-button-secondary { background: white; color: var(--ink); }
+.home-button-secondary:hover { background: var(--sage); }
+.home-illustration { width: min(100%, 48rem); margin: 0; padding: 1rem; overflow: hidden; border-radius: 1.75rem; background: #e3ebe5; }
+.home-image { display: block; width: 100%; height: auto; border-radius: 1rem; }
+.home-caption { margin-top: 1rem; color: var(--muted); font-size: .9rem; }
+body > header { border-bottom: 1px solid var(--line); background: rgba(255,255,255,.9); }
+body > header > div { width: min(100% - 2rem, 70rem); min-height: 4.75rem; margin: auto; padding: .75rem 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem; }
+body > header a { display: flex; align-items: center; gap: .75rem; color: var(--ink); text-decoration: none; }
+body > header a > span:first-child { width: 2.5rem; height: 2.5rem; display: grid; place-items: center; border-radius: 50%; background: var(--sage); font-size: 1.25rem; }
+body > header a > span:last-child > span:first-child { font-size: .85rem; font-weight: 700; letter-spacing: .06em; }
+body > header a > span:last-child > span:last-child, body > header p { color: var(--muted); font-size: .8rem; }
+body > header p { margin: 0; }
+body > footer { margin-top: 2rem; border-top: 1px solid var(--line); background: white; }
+body > footer > div { width: min(100% - 2rem, 70rem); margin: auto; padding: 1.5rem 0; color: var(--muted); font-size: .85rem; }
+@media (max-width: 40rem) { .home-page { padding-top: 3rem; } .home-actions { width: 100%; flex-direction: column; align-items: stretch; } .home-button { width: 100%; } body > header > div { justify-content: center; } }
+@media print {
+  body { background: white; color: #111; }
+  .no-print, header, footer, nav { display: none !important; }
+  .print-only { display: block; }
+  main { padding: 0 !important; max-width: none !important; }
+  .program-card { border: 0 !important; box-shadow: none !important; }
+  a { color: inherit; text-decoration: none; }
 }

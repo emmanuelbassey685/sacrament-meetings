@@ -1,0 +1,3 @@
+import MeetingCard from '@/components/MeetingCard';
+import { fetchMeetings } from '@/lib/meetings-api';
+export default async function MeetingsPage() { const meetings = await fetchMeetings(); return <main className="py-10 sm:py-14"><div className="mb-8"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--green)]">The archive</p><h1 className="mt-2 text-3xl font-semibold sm:text-4xl">Meeting programs</h1><p className="mt-3 text-[var(--muted)]">Browse this season’s Sunday gatherings.</p></div><div className="grid gap-5 md:grid-cols-2">{meetings.map((meeting) => <MeetingCard key={meeting.id} meeting={meeting}/>)}</div></main>; }

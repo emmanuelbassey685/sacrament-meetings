@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="520" viewBox="0 0 640 520" fill="none">
+  <rect width="640" height="520" rx="40" fill="#E5EEE8"/>
+  <circle cx="497" cy="108" r="48" fill="#D4E2D9"/>
+  <path d="M44 403c63-62 117-91 163-86 47 5 80 43 142 42 62-1 103-58 247-21v142H44V403Z" fill="#D3E1D7"/>
+  <path d="M44 444c92-52 150-48 210-20 60 28 103 25 172-4 68-29 120-28 170-3v63H44v-36Z" fill="#B9D1C3"/>
+  <g>
+    <path d="M398 217h166v181H398z" fill="#FCFBF7"/>
+    <path d="M384 221 481 154l97 67H384Z" fill="#24584B"/>
+    <path d="M465 184h32v-57h-32z" fill="#24584B"/>
+    <path d="M471 127h20v-20h-20z" fill="#24584B"/>
+    <path d="M458 290h45v108h-45z" fill="#E9E3D8"/>
+    <path d="M416 242h28v37h-28zM516 242h28v37h-28z" fill="#D4E2D9"/>
+    <path d="M422 248v25m-6-12h28m78-13v25m-6-12h28" stroke="#24584B" stroke-width="3"/>
+    <path d="M450 398h76" stroke="#C4B9A8" stroke-width="4"/>
+  </g>
+  <g transform="rotate(-7 239 301)">
+    <rect x="105" y="157" width="222" height="286" rx="14" fill="#B8C8BF" opacity=".35"/>
+    <rect x="94" y="145" width="222" height="286" rx="14" fill="#fff" stroke="#DCE4DF" stroke-width="2"/>
+    <path d="M118 170h68v7h-68z" fill="#B47B2C"/>
+    <text x="118" y="207" fill="#18332D" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="1.5">SUNDAY PROGRAM</text>
+    <text x="118" y="235" fill="#24584B" font-family="Arial,sans-serif" font-size="11" font-weight="700">NOVEMBER 8, 2026</text>
+    <path d="M118 257h174" stroke="#DCE4DF" stroke-width="2"/>
+    <text x="118" y="282" fill="#18332D" font-family="Arial,sans-serif" font-size="11" font-weight="700">OPENING HYMN</text>
+    <text x="118" y="301" fill="#5B6D67" font-family="Arial,sans-serif" font-size="12">The Spirit of God</text>
+    <text x="118" y="333" fill="#18332D" font-family="Arial,sans-serif" font-size="11" font-weight="700">SACRAMENT</text>
+    <text x="118" y="352" fill="#5B6D67" font-family="Arial,sans-serif" font-size="12">As Now We Take the Sacrament</text>
+    <text x="118" y="384" fill="#18332D" font-family="Arial,sans-serif" font-size="11" font-weight="700">SPEAKERS</text>
+    <circle cx="122" cy="404" r="3" fill="#B47B2C"/>
+    <path d="M132 404h102" stroke="#A7B4AE" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="122" cy="418" r="3" fill="#B47B2C"/>
+    <path d="M132 418h83" stroke="#A7B4AE" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <path d="M342 134c8-15 20-15 28 0m-14-8v25m-13-12h26" stroke="#B47B2C" stroke-width="4" stroke-linecap="round"/>
+</svg>
