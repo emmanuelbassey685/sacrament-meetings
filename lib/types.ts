@@ -1,8 +1,25 @@
-export type MeetingType = 'testimony' | 'regular' | 'stake' | 'general' | 'special';
+export type MeetingType =
+  | 'testimony'
+  | 'regular'
+  | 'stake'
+  | 'general'
+  | 'special';
 
-export interface Hymn { number: number; title: string }
-export interface SpeakerItem { name: string; topic: string; type: 'speaker' | 'musical-number' }
-export interface WardBusinessItem { description: string }
+export interface Hymn {
+  number: number;
+  title: string;
+}
+
+export interface SpeakerItem {
+  name: string;
+  topic: string;
+  type: 'speaker' | 'musical-number';
+}
+
+export interface WardBusinessItem {
+  description: string;
+}
+
 export interface SacramentMeeting {
   id: number;
   date: string;

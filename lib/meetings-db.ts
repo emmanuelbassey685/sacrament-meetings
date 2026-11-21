@@ -58,6 +58,107 @@ export async function getMeetingsByDate(
   return rows as unknown as SacramentMeeting[];
 }
 
-export async function addMeeting(_data: Omit<SacramentMeeting, 'id'>): Promise<SacramentMeeting> { throw new Error('addMeeting will be implemented in Week 04.'); }
-export async function updateMeeting(_id: number, _updates: Partial<SacramentMeeting>): Promise<SacramentMeeting | null> { throw new Error('updateMeeting will be implemented in Week 04.'); }
-export async function deleteMeeting(_id: number): Promise<boolean> { throw new Error('deleteMeeting will be implemented in Week 04.'); }
+export async function addMeeting(
+  data: Omit<SacramentMeeting, 'id'>
+): Promise<SacramentMeeting> {
+  const rows = await sql`
+    INSERT INTO meetings (
+      date,
+      meeting_type,
+      presiding,
+      conducting,
+      announcements,
+      opening_hymn,
+      opening_prayer,
+      ward_business,
+      stake_business,
+      sacrament_hymn,
+      speakers,
+      closing_hymn,
+      closing_prayer
+    )
+    VALUES (
+      ${data.date},
+      ${data.meetingType},
+      ${data.presiding},
+      ${data.conducting},
+      ${data.announcements ?? []},
+      ${JSON.stringify(data.openingHymn)}::jsonb,
+      ${data.openingPrayer},
+      ${JSON.stringify(data.wardBusiness)}::jsonb,
+      ${data.stakeBusiness},
+      ${JSON.stringify(data.sacramentHymn)}::jsonb,
+      ${JSON.stringify(data.speakers)}::jsonb,
+      ${JSON.stringify(data.closingHymn)}::jsonb,
+      ${data.closingPrayer}
+    )
+    RETURNING
+      id,
+      to_char(date, 'YYYY-MM-DD') AS date,
+      meeting_type AS "meetingType",
+      presiding,
+      conducting,
+      announcements,
+      opening_hymn AS "openingHymn",
+      opening_prayer AS "openingPrayer",
+      ward_business AS "wardBusiness",
+      stake_business AS "stakeBusiness",
+      sacrament_hymn AS "sacramentHymn",
+      speakers,
+      closing_hymn AS "closingHymn",
+      closing_prayer AS "closingPrayer"
+  `;
+
+  return rows[0] as unknown as SacramentMeeting;
+}
+
+export async function updateMeeting(
+  id: number,
+  updates: Omit<SacramentMeeting, 'id'>
+): Promise<SacramentMeeting | null> {
+  const rows = await sql`
+    UPDATE meetings
+    SET
+      date = ${updates.date},
+      meeting_type = ${updates.meetingType},
+      presiding = ${updates.presiding},
+      conducting = ${updates.conducting},
+      announcements = ${updates.announcements ?? []},
+      opening_hymn = ${JSON.stringify(updates.openingHymn)}::jsonb,
+      opening_prayer = ${updates.openingPrayer},
+      ward_business = ${JSON.stringify(updates.wardBusiness)}::jsonb,
+      stake_business = ${updates.stakeBusiness},
+      sacrament_hymn = ${JSON.stringify(updates.sacramentHymn)}::jsonb,
+      speakers = ${JSON.stringify(updates.speakers)}::jsonb,
+      closing_hymn = ${JSON.stringify(updates.closingHymn)}::jsonb,
+      closing_prayer = ${updates.closingPrayer}
+    WHERE id = ${id}
+    RETURNING
+      id,
+      to_char(date, 'YYYY-MM-DD') AS date,
+      meeting_type AS "meetingType",
+      presiding,
+      conducting,
+      announcements,
+      opening_hymn AS "openingHymn",
+      opening_prayer AS "openingPrayer",
+      ward_business AS "wardBusiness",
+      stake_business AS "stakeBusiness",
+      sacrament_hymn AS "sacramentHymn",
+      speakers,
+      closing_hymn AS "closingHymn",
+      closing_prayer AS "closingPrayer"
+  `;
+
+  return (rows[0] as unknown as SacramentMeeting) ?? null;
+}
+
+export async function deleteMeeting(id: number): Promise<boolean> {
+  const rows = await sql`
+    DELETE FROM meetings
+    WHERE id = ${id}
+    RETURNING id
+  `;
+
+  return rows.length > 0;
+}
