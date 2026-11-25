@@ -145,18 +145,17 @@ export async function updateMeeting(
 }
 
 export async function deleteMeeting(id: number): Promise<void> {
-  try {
-    const deleted = await deleteMeetingInDb(id);
+  let deleted: boolean;
 
-    if (!deleted) {
-      throw new Error('Meeting not found.');
-    }
+  try {
+    deleted = await deleteMeetingInDb(id);
   } catch (error) {
     console.error('Delete meeting failed:', error);
+    throw new Error('Unable to delete the meeting. Please try again.');
+  }
 
-    throw new Error(
-      'Unable to delete the meeting. Please try again.'
-    );
+  if (!deleted) {
+    throw new Error('Meeting not found.');
   }
 
   revalidatePath('/meetings');
