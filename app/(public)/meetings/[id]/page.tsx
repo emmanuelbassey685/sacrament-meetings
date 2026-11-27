@@ -1,6 +1,7 @@
 
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { auth } from '@/auth';
 import MeetingDetail from '@/components/MeetingDetail';
 import PrintButton from '@/components/PrintButton';
 import DeleteMeetingButton from '@/components/DeleteMeetingButton';
@@ -26,6 +27,9 @@ export default async function MeetingPage({
     notFound();
   }
 
+  const session = await auth();
+  const isAdmin = session?.user?.role === 'admin';
+
   return (
     <main className="mx-auto max-w-3xl px-6 py-8 sm:py-12">
       <div className="no-print mb-6 flex flex-wrap items-center justify-between gap-3">
@@ -33,20 +37,14 @@ export default async function MeetingPage({
           href="/meetings"
           className="rounded-full px-3 py-2 text-sm font-medium text-[var(--green)] hover:bg-[var(--sage)]"
         >
-          ← Back to meetings
+          Back to meetings
         </Link>
 
         <div className="flex flex-wrap items-center gap-3">
-          <Link
-            href={`/meetings/${meeting.id}/edit`}
-            className="rounded-full bg-[var(--ink)] px-4 py-2 text-sm font-medium text-white hover:opacity-80"
-          >
-            Edit meeting
-          </Link>
-
           <PrintButton />
-
-          <DeleteMeetingButton meetingId={meeting.id} />
+          {isAdmin && (
+            <DeleteMeetingButton meetingId={numericId} />
+          )}
         </div>
       </div>
 

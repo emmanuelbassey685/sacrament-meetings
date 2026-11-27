@@ -31,15 +31,15 @@ export default async function EditMeetingPage({
           href={`/meetings/${meeting.id}`}
           className="text-sm underline"
         >
-          ← Back to meeting
+          Back to meeting
         </Link>
 
-        <h1 className="mt-4 text-3xl font-semibold">
+        <h1 className="mt-6 text-3xl font-bold">
           Edit Sacrament Meeting
         </h1>
 
         <p className="mt-2 text-[var(--muted)]">
-          Update the meeting program details below.
+          Update the details for this sacrament meeting.
         </p>
       </div>
 

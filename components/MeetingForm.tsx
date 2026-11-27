@@ -173,8 +173,16 @@ export default function MeetingForm({
         </div>
       </section>
 
-      <button type="submit" disabled={pending} className="rounded bg-[var(--ink)] px-5 py-3 font-semibold text-white disabled:opacity-50">
-        {pending ? 'Saving meeting...' : meeting ? 'Update meeting' : 'Create meeting'}
+      <button
+        type="submit"
+        disabled={pending}
+        className="rounded bg-[var(--ink)] px-5 py-3 font-semibold text-white disabled:opacity-50"
+      >
+        {pending
+          ? 'Saving meeting...'
+          : meeting
+            ? 'Update meeting'
+            : 'Create meeting'}
       </button>
     </form>
   );

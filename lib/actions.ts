@@ -1,4 +1,4 @@
-
+﻿
 'use server';
 
 import { z } from 'zod';
@@ -10,6 +10,7 @@ import {
   deleteMeeting as deleteMeetingInDb,
 } from '@/lib/meetings-db';
 import type { MeetingType } from '@/lib/types';
+import { requireAdmin } from '@/lib/auth-guard';
 
 const meetingSchema = z.object({
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Enter a valid meeting date.'),
@@ -104,6 +105,7 @@ export async function createMeeting(
   _previousState: MeetingFormState,
   formData: FormData
 ): Promise<MeetingFormState> {
+  await requireAdmin();
   const result = parseMeeting(formData);
 
   if (!result.success) return result.state;
@@ -124,6 +126,7 @@ export async function updateMeeting(
   _previousState: MeetingFormState,
   formData: FormData
 ): Promise<MeetingFormState> {
+  await requireAdmin();
   const result = parseMeeting(formData);
 
   if (!result.success) return result.state;
@@ -145,6 +148,8 @@ export async function updateMeeting(
 }
 
 export async function deleteMeeting(id: number): Promise<void> {
+  await requireAdmin();
+
   let deleted: boolean;
 
   try {
