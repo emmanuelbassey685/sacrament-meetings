@@ -21,7 +21,7 @@ export default function DeleteMeetingButton({
     >
       <button
         type="submit"
-        className="rounded-full border border-red-700 px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-50"
+        className="rounded-md bg-red-100 px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-200"
       >
         Delete meeting
       </button>

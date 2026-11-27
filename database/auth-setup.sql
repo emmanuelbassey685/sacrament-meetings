@@ -1,0 +1,23 @@
+﻿
+CREATE TABLE IF NOT EXISTS app_users (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL UNIQUE,
+  password_hash TEXT NOT NULL,
+  role TEXT NOT NULL DEFAULT 'admin'
+    CHECK (role IN ('admin')),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+ALTER TABLE app_users
+ADD COLUMN IF NOT EXISTS role TEXT;
+
+UPDATE app_users
+SET role = 'admin'
+WHERE role IS NULL;
+
+ALTER TABLE app_users
+ALTER COLUMN role SET DEFAULT 'admin';
+
+ALTER TABLE app_users
+ALTER COLUMN role SET NOT NULL;
